@@ -1,0 +1,42 @@
+---
+
+- name: install common packages
+  apt: name={{ item }}
+  with_items:
+    - git
+    - zsh
+    - ack-grep 
+    - silversearcher-ag
+    - tmux
+    - rubygems1.9.1
+  become: true
+  become_method: sudo
+  tags: basic_packages
+
+- name: check linux-env exist
+  stat: path=~/.linux-env
+  register: linux_env_check
+  tags: linux_env
+
+- name: clone https://github.com/byrne/linux-env.git
+  git: repo=https://github.com/byrne/linux-env.git dest=~/.linux-env
+  when: linux_env_check.stat.exists == false
+  tags: linux_env
+
+- name: install linux-env
+  shell: ./install-minimal.sh chdir=~/.linux-env creates=~/.zshrc
+  tags: linux_env
+
+#- name: change to zsh
+#  shell: chsh -s /bin/zsh `whoami`
+#  sudo: true
+#  tags: linux_env
+
+#
+#- name: install linux-env
+#  script: ../../../scripts/byrne-env.sh
+#  tags: linux-env
+#  register: linux_env_install_log
+#
+#- name: print install log
+#  debug: var=linux_env_install_log

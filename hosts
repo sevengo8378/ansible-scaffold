@@ -1,0 +1,11 @@
+# hosts
+
+#[local]
+# Synchronize module incorrectly uses ssh for local connection (https://github.com/ansible/ansible/issues/5702)
+#127.0.0.1 ansible_connection=local
+
+[test]
+192.168.33.10
+
+[aws]
+ec2-54-223-200-62.cn-north-1.compute.amazonaws.com.cn

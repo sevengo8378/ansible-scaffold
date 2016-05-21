@@ -1,0 +1,6 @@
+---
+#- include: hanfei_sudo.yml
+#- include: sudo_nopasswd.yml
+- include: timezone.yml
+- include: change_sources.yml
+- include: upgrade.yml

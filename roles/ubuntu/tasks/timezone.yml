@@ -1,0 +1,7 @@
+---
+- name: set up timezone to Asia/Shanghai
+  copy: src=../files/timezone dest=/etc
+  become: true
+  become_method: sudo
+  notify:
+    - reconfigure tzdata

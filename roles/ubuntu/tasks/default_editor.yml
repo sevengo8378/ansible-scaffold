@@ -1,0 +1,4 @@
+---
+- name: set default editor
+  file: src=/usr/bin/vim dest=/etc/alternatives/editor state=link force=true
+  sudo: true

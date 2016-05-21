@@ -1,0 +1,6 @@
+---
+- name: change sources to cn mirror
+  replace: dest=/etc/apt/sources.list regexp='http://(.*archive|security).ubuntu.com' replace='http://cn.archive.ubuntu.com'
+  become: true
+  become_method: sudo
+  tags: change_source
